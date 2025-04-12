@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and datasets
+logs/
+*.log
+*.csv
+*.xlsx
