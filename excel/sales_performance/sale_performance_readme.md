@@ -6,19 +6,19 @@ An interactive sales dashboard built in Excel as part of the School of Statistic
 
 ## 📚 Table of Contents
 
-1. [Overview](#overview)  
-2. [Dashboard Preview](#dashboard-preview)  
-3. [Dataset Summary](#dataset-summary)  
-4. [Data Cleaning](#data-cleaning)  
-5. [Business Questions Answered](#business-questions-answered)  
-6. [Features Implemented](#features-implemented)  
-7. [Key Insights](#key-insights)  
-8. [Recommendations](#recommendations)  
-9. [How to Use](#how-to-use)  
+1. [Overview](#-overview)  
+2. [Dashboard Preview](#-dashboard-preview)  
+3. [Dataset Summary](#-dataset-summary)  
+4. [Data Cleaning](#-data-cleaning)  
+5. [Business Questions Answered](#-business-questions-answered)  
+6. [Features Implemented](#-features-implemented)  
+7. [Key Insights](#-key-insights)  
+8. [Recommendations](#-recommendations)  
+9. [How to Use](#-how-to-use)  
 
 ---
 
-## 🧾 Overview
+## 📄 Overview
 
 Built during the **School of Statisticians – Kenya** mentorship program, this project focused on turning sales data into meaningful insights through a fully interactive Excel dashboard.
 
