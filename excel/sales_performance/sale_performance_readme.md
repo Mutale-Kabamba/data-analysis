@@ -36,7 +36,7 @@ Built during the **School of Statisticians – Kenya** mentorship program, this 
 
 Here’s a preview of the interactive Excel dashboard:
 
-![Retail Sales Dashboard Preview](dashboard_preview.png)
+![Retail Sales Dashboard Preview](Dashboard_Preview.png)
 
 ---
 
