@@ -148,6 +148,8 @@ To ensure accurate analysis, the following data cleaning steps were applied:
    - Date Range  
 5. **Explore** trends and insights using the pivot charts
 
-👉 Want to use the dataset? Download: `retail_dashboard_data.csv`
+👉 Want to use the dataset?
+👉 [Download the dataset](./retail_dashboard_data.csv)
+
 
 ---
