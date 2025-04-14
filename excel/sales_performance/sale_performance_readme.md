@@ -139,7 +139,7 @@ To ensure accurate analysis, the following data cleaning steps were applied:
 1. **Download** the Excel file: `Sales_Performance.xlsx`  
 2. Open it using **Microsoft Excel 2016** or later  
 3. The workbook contains 3 sheets:
-   - `data`: Raw dataset  
+   - `data`: Raw dataset (cleaned)  
    - `working`: Pivot tables and calculations (protected)  
    - `DASHBOARD`: Interactive visual report  
 4. Use **slicers** to filter by:
