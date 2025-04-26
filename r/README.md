@@ -1,6 +1,11 @@
 
 # ☕ Coffee Shop Customer Survey Analysis (R Project)
 
+![Project Status](https://img.shields.io/badge/Project-Completed-brightgreen)
+![Built With](https://img.shields.io/badge/Built%20With-R-blue)
+![Last Updated](https://img.shields.io/badge/Last_Updated-April_2025-orange)
+
+
 An interactive coffee shop customer analysis project built in R as part of an exploratory data analysis exercise from the School of Statisticians – Mentorship Program.. This project transforms raw survey data into actionable business insights through statistical modeling and visualizations, allowing users to explore customer demographics, product preferences, visit behaviors, loyalty trends, and satisfaction drivers.
 
 ---
