@@ -3,7 +3,6 @@
 
 ![Project Status](https://img.shields.io/badge/Project-Completed-brightgreen)
 ![Language](https://img.shields.io/badge/Language-R-blue)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
 ![Last Updated](https://img.shields.io/badge/Last_Updated-April_2025-orange)
 
 ---
@@ -74,44 +73,6 @@ It explores customer demographics, preferences, satisfaction levels, loyalty mem
   - Scatter Plots
   - Correlation Plots
   - Regression Summaries
-
----
-
-## 📂 Project Structure
-
-```bash
-coffee_survey_analysis/
-├── data/
-│   └── coffee_shop_survey.xlsx
-├── reports/
-│   └── coffee_survey_report.pdf
-├── scripts/
-│   └── coffee_analysis_script.R
-├── README.md
-```
-
----
-
-## ⚡ Quick Setup
-
-1. **Clone the repository:**
-
-```bash
-git clone https://github.com/your-username/coffee_survey_analysis.git
-```
-
-2. **Install required R packages:**
-
-```R
-install.packages(c("dplyr", "ggplot2", "readr", "readxl", "broom", "rmarkdown"))
-```
-
-3. **Run the analysis:**
-
-```R
-source("scripts/coffee_analysis_script.R")
-```
-
 ---
 
 ## 📈 Results Highlights
