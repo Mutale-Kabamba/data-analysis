@@ -9,7 +9,7 @@
 
 
 
-An interactive coffee shop customer analysis project built in R as part of an exploratory data analysis exercise from the School of Statisticians – Mentorship Program.. This project transforms raw survey data into actionable business insights through statistical modeling and visualizations, allowing users to explore customer demographics, product preferences, visit behaviors, loyalty trends, and satisfaction drivers.
+An interactive coffee shop customer analysis project built in R as part of an exploratory data analysis exercise from the School of Statisticians  Mentorship Program. This project transforms raw survey data into actionable business insights through statistical modeling and visualizations, allowing users to explore customer demographics, product preferences, visit behaviors, loyalty trends, and satisfaction drivers.
 
 ---
 
