@@ -5,7 +5,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelEncoder
 
 # Load your custom Iris dataset
-file_path = "Data_CW2.xlsx"
+file_path = "data-analysis/python/Iris App/iris-knn-streamlit/Data_CW2.xlsx"
 df_iris = pd.read_excel(file_path, engine='openpyxl', sheet_name='Iris', header=None)
 df_iris = df_iris[0].str.split(',', expand=True)
 df_iris.columns = ["sepal_length", "sepal_width", "petal_length", "petal_width", "variety"]
