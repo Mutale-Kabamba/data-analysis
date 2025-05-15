@@ -1,0 +1,343 @@
+---
+title: "Coffee Shop Survey Report"
+author: "Kabamba Mutale"
+date: "2025-04-22"
+output:
+  word_document: 
+    toc: true
+  html_document: default
+  pdf_document: 
+    toc: true
+    number_sections: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Install & Load Libraries**
+
+Install packages by running **install.packages(c("dplyr", "ggplot2", "readr"))** in the console. This tells R to install the listed packages in one go first if they are not, thereafter, you just load them.
+
+```{r}
+# Load libraries and set global options
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(rmarkdown)
+library(tinytex)
+```
+
+# **Import Data**
+
+Use `read_excel` to load the dataset by providing the path for your dataset.
+
+```{r}
+#Loading Data
+data <- read_excel("J:/r/coffee_shop_survey.xlsx")
+```
+
+# **Inspecting the Data**
+
+**View the structure**
+
+```{r}
+# View the structure 
+str(data)
+```
+
+**View the first few rows**
+
+```{r}
+# View the first few rows
+head(data)
+```
+
+# **Cleaning Data**
+
+**Check for missing values**
+
+```{r}
+# Check for missing values
+colSums(is.na(data))
+```
+
+**Remove rows with any NA values (optional)**
+
+```{r}
+# Remove rows with any NA values (optional)
+data2 <- na.omit(data)
+```
+
+**Changing column name (optional)**
+
+```{r}
+# changing column name
+names(data2)[names(data2) == "Time_Spent (min)"] <- "Time_Spent_min"
+```
+
+**Confirming column name change (optional)**
+
+```{r}
+# Check column names
+colnames(data2)
+```
+
+# **Descriptive Analysis**
+
+### **1. What is the average age of customers visiting the coffee shop?**
+
+```{r}
+# Average Age of Customers
+
+average_age <- mean(data2$Age,na.rm = TRUE)
+print(paste("Average Age:", round(average_age, 1)))
+
+```
+
+**Visual KPI for Average Age**
+
+```{r}
+#Create a data frame for ploting
+age_data <- data.frame(Metric = "Average Age", Value = average_age)
+
+#Plot
+
+ggplot(data.frame(Age = average_age), aes(x = 1, y = Age)) + geom_text(aes(label = paste0("Average Age\n", round(Age, 1))), size = 8, fontface = "bold") + theme_void() + theme( plot.background = element_rect(fill = "#f5f5f5", color = NA), panel.background = element_rect(fill = "#f5f5f5", color = NA), plot.title = element_text(hjust = 0.5, face = "bold", size = 14) ) + labs(title = "Key Metric")
+```
+
+### **2. What is the gender distribution among respondents?**
+
+```{r}
+gender_distribution <- data2 %>% 
+  count(Gender, name = "Count")
+  print(gender_distribution)
+table(data2$Gender)
+```
+
+***Plot - Gender Distribution***
+
+```{r}
+# Gender Distribution among respondents
+ggplot(gender_distribution, aes(x = Gender, y = Count, fill = Gender)) +
+  geom_col() +
+  labs(
+      title = "Gender Distribution",
+      x = "Gender of Customers",
+      y = "Number Of Customers") + 
+      theme_minimal() 
+```
+
+### **3. What are the most and least popular products?**
+
+```{r}
+# Most & Least Popular Products
+product_counts <-
+table(data2$Favorite_Product)
+most_popular <-
+names(product_counts[which.max(product_counts)])
+least_popular <-
+names(product_counts[which.min(product_counts)])
+```
+
+***Most Popular***
+
+```{r}
+print(paste("Most Popular Product:", most_popular))
+```
+
+***Least Popular***
+
+```{r}
+print(paste("Least Popular Product:", least_popular))
+```
+
+**Plot** - **Most & Least Popular Products**
+
+```{r}
+# Create a data frame from the table
+product_counts <- as.data.frame(table(data$Favorite_Product))
+colnames(product_counts) <- c("Product", "Count")
+# Plot
+ggplot(product_counts, aes(x = reorder(Product, -Count), y = Count, fill = Product)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Favorite Product Popularity",
+       x = "Product", y = "Number of Customers") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  geom_text(aes(label = Count), vjust = -0.5)
+```
+
+# **Relationship & Comparison Questions**
+
+### **1. Does visit frequency differ by gender or age group?**
+
+***By Gender***
+
+```{r}
+#By Gender
+aggregate(Visit_Frequency ~ Gender, data2, FUN=mean)
+data2_summary <- data2 %>%
+  group_by(Gender) %>%
+  summarize(Mean_Visit_Frequency = mean(Visit_Frequency, na.rm = TRUE))
+
+ggplot(data2_summary, aes(x = Gender, y = Mean_Visit_Frequency, fill = Gender)) +
+  geom_col() +
+  labs(
+    title = "Mean Visit Frequency by Gender",
+    x = "Gender",
+    y = "Mean Visit Frequency"
+  ) +
+  theme_minimal()
+         
+```
+
+***By Age***
+
+```{r}
+#By Age
+data2$Age_Group <- cut(data2$Age, breaks=c(0, 17, 29, 44, 59, 100), labels=c("Child", "Young Adult", "Adult", "Old", "Senior"))
+aggregate(Visit_Frequency ~ Age_Group, data2, FUN=mean)
+
+ggplot(data2, aes(x = Age_Group, y = Visit_Frequency, fill = Age_Group)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Mean Visit Frequency by Age Group",
+    x = "Age Group",
+    y = "Mean Visit Frequency"
+  ) +
+  theme_minimal()
+
+```
+
+### **2. Is there a relationship between visit frequency and satisfaction score?**
+
+***Correlation***
+
+```{r}
+cor(data2$Visit_Frequency, data2$Satisfaction_Score)
+```
+
+***Plot - Correlation***
+
+```{r}
+ggplot(data, aes(x = Visit_Frequency, y = Satisfaction_Score)) + geom_jitter(color = "purple") + geom_smooth(method = "lm", se = FALSE, color = "black") + labs(title = "Visit Frequency vs Satisfaction Score") + theme_minimal()
+```
+
+### **3. Do loyalty members spend more time at the coffee shop than non-members?**
+
+```{r}
+# First, summarize the data
+
+summary_data <- data2%>% group_by(Loyalty_Member) %>% summarise(Avg_Time_Spent = mean(Time_Spent_min, na.rm = TRUE))
+
+# Then plot
+
+ggplot(summary_data, aes(x = factor(Loyalty_Member, levels = c("Yes", "No"), labels = c("Loyal", "Not Loyal")), y = Avg_Time_Spent, fill = Loyalty_Member)) + geom_col() + geom_text(aes(label = round(Avg_Time_Spent, 1)), vjust = -0.5, color = "black") + labs(title = "Time Spent by Loyalty Membership", y = "Time Spent (min)", x = "Loyalty Member") + theme_minimal()
+
+t.test(Time_Spent_min ~ Loyalty_Member, data = data2)
+```
+
+The t-test indicates that loyalty program members tend to spend a bit more time in the coffee shop compared to non-members (average: 35.67 minutes vs. 30.53 minutes). However, the p-value (0.07917) exceeds the typical 0.05 significance level, implying that although there appears to be a slight difference, the evidence isn't strong enough to confidently conclude that the pattern is real.
+
+```{r}
+chi_square_data <- table(data2$Would_Recommend, data2$Loyalty_Member)
+print(chi_square_data)
+
+chi_square_df <- as.data.frame(chi_square_data)
+colnames(chi_square_df) <- c("Would_Recommend", "Loyalty_Member", "Count")
+
+chi_square_df$Loyalty_Member <- factor(chi_square_df$Loyalty_Member,
+                                       levels = c("No", "Yes"),
+                                       labels = c("Not Loyal", "Loyal"))
+
+ggplot(chi_square_df, aes(x = Would_Recommend, y = Count, fill = Loyalty_Member)) +
+  geom_col(position = "dodge") +  # "dodge" makes bars side-by-side instead of stacked
+  geom_text(aes(label = Count), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, 
+            size = 3.5) +  # Add labels on top of bars
+  labs(title = "Customer Recommendation vs Loyalty Membership",
+       x = "Would Recommend the Coffee Shop",
+       y = "Number of Customers",
+       fill = "Loyalty Member") +
+  theme_minimal()
+
+
+```
+
+The chart shows the relationship between customer recommendation and loyalty membership status. Among those who would not recommend the coffee shop, loyal members outnumber non-loyal members (20 vs. 7). Among those who would recommend it, the numbers are more balanced (35 loyal vs. 38 not loyal). The Chi-Square test (p = 0.035) indicates a statistically significant association between loyalty membership and likelihood to recommend the coffee shop, suggesting that loyalty members are generally more supportive, although being a loyalty member does not guarantee a recommendation.
+
+# **Insightful/Advanced Questions**
+
+### **1. What factors (age, loyalty status, product_preference) are associated with higher satisfaction scores?**
+
+```{r}
+data_model <- data2 %>%
+  select(Age, Loyalty_Member, Favorite_Product, Satisfaction_Score) %>%
+  mutate(
+    Loyalty_Member = factor(Loyalty_Member),
+    Favorite_Product = factor(Favorite_Product)
+  )
+
+model <- lm(Satisfaction_Score ~ Age + Loyalty_Member + Favorite_Product, data = data_model)
+summary(model)
+
+```
+
+```{r}
+library(broom)
+
+tidy(model) %>% 
+  ggplot(aes(x = term, y = estimate, fill = p.value < 0.05)) +
+  geom_col() +
+  coord_flip() +
+  labs(title = "Impact of Factors on Satisfaction Score",
+       y = "Effect Size", x = "")
+```
+
+### **2. Is there a difference in satisfaction scores between customers who prefer coffee and those who prefer pastries?**
+
+```{r}
+coffee_pastries <- data2 %>% 
+  filter(Favorite_Product %in% c('Coffee', 'Pastry')) %>% 
+  group_by(Favorite_Product) %>% 
+  summarise(Average_Satisfaction = mean(Satisfaction_Score)) %>% 
+  ggplot(aes(x = Favorite_Product, y = Average_Satisfaction, fill = Favorite_Product)) +
+  geom_col() +
+  theme_minimal()
+
+print(coffee_pastries)
+```
+
+### **3. Can we predict whether a customer would recommend the coffee shop based on other variables?**
+
+```{r}
+# Prepare data
+data_model <- data2 %>%
+  select(Would_Recommend, Gender, Satisfaction_Score, Age, Loyalty_Member, Visit_Frequency) %>%
+  mutate(
+    recommend = ifelse(Would_Recommend == "Yes", 1, 0),  
+    Loyalty_Member = as.factor(Loyalty_Member),
+    Gender = as.factor(Gender)
+  ) %>%
+  drop_na()
+```
+
+```{r}
+# Fit logistic regression
+log_model <- glm(recommend ~ Satisfaction_Score + Age + Loyalty_Member + Visit_Frequency + Gender, data = data_model, family = "binomial")
+
+summary(log_model)
+```
+
+Yes, **we can partially predict** whether a customer would recommend the coffee shop:
+
+-   **Satisfaction Score** is the strongest positive predictor (p = 0.043)
+
+-   **Loyalty status** unexpectedly shows a negative effect (p = 0.025)
+
+Other factors (age, gender, visit frequency) do not show significant effects in this model.
