@@ -1,3 +1,4 @@
+# iris_knn_webapp.py
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -6,9 +7,10 @@ from sklearn.preprocessing import LabelEncoder
 
 # Load your custom Iris dataset
 file_path = "Data_CW2.xlsx"
-df_iris = pd.read_excel(file_path, engine='openpyxl', sheet_name='Iris', header=None)
-df_iris = df_iris[0].str.split(',', expand=True)
+df_iris = pd.read_excel(file_path, engine="openpyxl", sheet_name="Iris")
+
 df_iris.columns = ["sepal_length", "sepal_width", "petal_length", "petal_width", "variety"]
+
 # Encode target labels
 le = LabelEncoder()
 df_iris['label'] = le.fit_transform(df_iris['variety'])
@@ -39,8 +41,3 @@ predicted_class = le.inverse_transform(prediction)[0]
 
 # Display result
 st.success(f"Predicted Flower Variety: **{predicted_class}**")
-st.write("### Input Data")
-st.write(f"- Sepal Length: {sepal_length} cm")
-st.write(f"- Sepal Width: {sepal_width} cm")
-st.write(f"- Petal Length: {petal_length} cm")
-st.write(f"- Petal Width: {petal_width} cm")
