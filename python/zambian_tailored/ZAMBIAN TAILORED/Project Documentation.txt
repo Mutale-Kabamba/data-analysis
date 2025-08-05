@@ -1,0 +1,90 @@
+Project Documentation: Zambian Tailored Customer Analysis
+This document serves as the complete project brief for the freelance data analyst. It outlines the client's business context, project objectives, contractual terms, and the scope of work.
+
+?? Client Details
+* Company Name: Zambian Tailored Limited
+* Company Address: Plot 123, Central Park Plaza, Great East Road, Lusaka, Zambia
+* Client Representative: Ms. Chanda Mwape
+* Title: Founder & Creative Director
+* Email: c.mwape@zambiantailored.com
+* Business Description: Zambian Tailored is a premium fashion brand that designs and creates custom-made apparel using high-quality, authentic Zambian fabrics such as Chitenge and Ankara. The brand caters to both local and international clients who appreciate unique, culturally rich, and meticulously crafted garments. The company operates primarily through its e-commerce website, with a strong presence on social media platforms like Instagram and Pinterest.
+
+?? Project Goal
+The primary goal of this project is to gain a deep understanding of customer behavior and preferences at Zambian Tailored. We need to identify key customer segments, understand what drives repeat purchases, and discover actionable insights to optimize marketing efforts and enhance customer loyalty.
+
+?? Terms of Engagement (TOE)
+This document outlines the contractual agreement between the Client and the Data Analyst for the "Zambian Tailored Customer Analysis" project.
+1. Parties Involved
+* Client: Zambian Tailored Limited ("the Client")
+* Data Analyst: [Your Name/Freelance Company Name] ("the Analyst")
+2. Project Title
+Zambian Tailored Customer Analysis
+3. Effective Date
+* 6th August 5, 2025
+4. Project Duration
+The project is expected to be completed within 10 business days from the date the dataset is provided, and these terms are agreed upon.
+5. Fees and Payment Terms
+* Total Project Fee: $1500 USD
+* Payment Schedule: 50% upfront, and the remaining 50% upon Client's acceptance of the final deliverables.
+* Payment Method: Bank Transfer 
+6. Confidentiality
+The Analyst agrees to treat all data, information, and insights as strictly confidential. The Analyst shall not disclose, reproduce, or use any confidential information for any purpose other than the execution of this project.
+7. Intellectual Property
+Upon full payment, all intellectual property rights, including analysis, reports, and code, will belong to the Client. The Analyst may, however, use the project as a portfolio piece with all client-identifiable data anonymized.
+
+?? Terms of Reference (TOR)
+This document details the specific objectives, scope, methodology, and deliverables for the "Zambian Tailored Customer Analysis" project.
+1. Project Objectives
+The primary objectives are to:
+* Analyze sales and order trends to understand seasonality and product popularity.
+* Identify the most popular MaterialType and CustomizationOptions.
+* Segment customers based on their purchasing behavior using an RFM model.
+* Develop detailed customer personas for each segment.
+* Provide actionable recommendations to improve marketing and increase repeat orders.
+2. Scope of Work
+* Data Acquisition: The Client will provide the zambian_tailored_data.csv file.
+* Data Cleaning and Preprocessing:
+o Handle missing values and incorrect data types.
+o Create new features (e.g., Month, DayOfWeek) from existing data.
+* Exploratory Data Analysis (EDA):
+o Analyze sales trends over time.
+o Visualize and interpret popular products, categories, and materials.
+o Map geographical sales distribution.
+o Assess the effectiveness of different MarketingChannels.
+* Customer Segmentation:
+o Implement an RFM (Recency, Frequency, Monetary) analysis.
+o Explain the business logic used to define customer segments.
+o Create 3-5 distinct customer personas with descriptions of their behavior.
+* Insight Generation & Recommendations:
+o Summarize key findings in a comprehensive report.
+o Provide specific recommendations for marketing, personalization, and loyalty programs.
+3. Deliverables
+* Final Project Report (PDF): A detailed document with an executive summary, findings from the EDA and segmentation, and clear recommendations.
+* Source Code (Python Notebook): The well-commented code used for all analysis, ensuring reproducibility.
+* Cleaned Data File (CSV): The final, cleaned version of the dataset.
+4. Timeline
+* Days 1-2: Data Cleaning, Preprocessing, and Feature Engineering.
+* Days 3-5: Exploratory Data Analysis (EDA).
+* Days 6-8: Customer Segmentation (RFM) and Persona Creation.
+* Days 9-10: Report Writing and Final Deliverable Preparation.
+
+?? Dataset Description
+The analysis will be performed on the zambian_tailored_data.csv file. Here is a description of its columns:
+* CustomerID: Unique identifier for each customer.
+* OrderNumber: Unique identifier for each order.
+* OrderDate: The date the order was placed.
+* ProductID: Unique identifier for the product.
+* ProductName: Name of the product (e.g., "Chitenge Dress," "Ankara Suit").
+* Category: Product category (e.g., "Dresses," "Suits," "Accessories").
+* MaterialType: The type of fabric used (e.g., "Chitenge," "Ankara," "Mud Cloth").
+* CustomizationOptions: Text field detailing specific requests (e.g., "Sleeveless," "Embroidered Collar," "Tailored Fit").
+* Quantity: The number of units purchased.
+* UnitPrice_USD: The price per unit in US Dollars.
+* TotalPrice_USD: The total cost of the items in that row.
+* CustomerCountry: The customer's country of residence.
+* CustomerCity: The customer's city of residence.
+* MarketingChannel: How the customer found us (e.g., "Instagram Ad," "Referral").
+* ShippingTime_Days: The number of days it took for the order to be delivered.
+
+This concludes the project documentation. You have everything you need to begin your work. I look forward to your final analysis.
+
